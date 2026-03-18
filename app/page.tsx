@@ -1,13 +1,13 @@
-import { AudienceCard, NewsCard, ProgramCard, ProjectCard } from '@/components/cards';
+import { ProgramCard, ProjectCard } from '@/components/cards';
 import { Button } from '@/components/Button';
-import { CTASection } from '@/components/CTASection';
+import { Card } from '@/components/Card';
+import { ContactForm } from '@/components/ContactForm';
 import { HeroSection } from '@/components/HeroSection';
 import { SectionHeading } from '@/components/SectionHeading';
 import { StatsGrid } from '@/components/StatsGrid';
 import { Timeline } from '@/components/Timeline';
 import { homeData } from '@/data/home';
 import { projects } from '@/data/projects';
-import { newsItems } from '@/data/news';
 
 export default function HomePage() {
   return (
@@ -17,44 +17,83 @@ export default function HomePage() {
         subtitle={homeData.hero.subtitle}
         actions={
           <>
-            <Button href="/projects">Подать проект</Button>
-            <Button href="/education" variant="tertiary">Выбрать программу</Button>
-            <Button href="/partners" variant="tertiary">Обсудить партнерство</Button>
+            <Button href="/partners">Обсудить проект</Button>
+            <Button href="/ecosystem" variant="tertiary">
+              Посмотреть экосистему
+            </Button>
           </>
         }
       />
 
       <section>
-        <SectionHeading title="Быстрые входы по аудиториям" />
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">{homeData.audiences.map((item) => <AudienceCard key={item} title={item} />)}</div>
+        <SectionHeading title="Почему это важно" subtitle="Чем институт отличается как экосистема полного цикла." />
+        <div className="grid gap-4 md:grid-cols-3">
+          {homeData.whyImportant.map((item) => (
+            <Card key={item} title={item} description="" />
+          ))}
+        </div>
       </section>
 
       <section>
-        <SectionHeading title="Три опоры экосистемы" />
-        <div className="grid gap-4 md:grid-cols-3">{homeData.pillars.map((p) => <ProgramCard key={p.title} title={p.title} description={p.description} />)}</div>
+        <SectionHeading title="4 опоры экосистемы" />
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {homeData.pillars.map((p) => (
+            <ProgramCard key={p.title} title={p.title} description={p.description} />
+          ))}
+        </div>
       </section>
 
       <section>
-        <SectionHeading title="Полный цикл работы" subtitle="От идеи до внедрения ИИ-решения в медицине." />
-        <Timeline steps={homeData.process} />
+        <SectionHeading title="Путь AI-решения" subtitle="Линейная схема от команды до внедрения." />
+        <Timeline steps={homeData.aiPath} />
       </section>
 
       <section>
-        <SectionHeading title="Ключевые показатели (демо-контент)" />
-        <StatsGrid items={homeData.stats} />
+        <SectionHeading title="Ключевые подразделения" />
+        <div className="grid gap-4 md:grid-cols-3">
+          {homeData.subdivisions.map((item) => (
+            <Card key={item.title} title={item.title} description={item.description} />
+          ))}
+        </div>
       </section>
 
       <section>
-        <SectionHeading title="Избранные проекты / кейсы" />
-        <div className="grid gap-4 md:grid-cols-3">{projects.map((p) => <ProjectCard key={p.slug} title={p.title} description={p.description} slug={p.slug} tags={p.tags} />)}</div>
+        <SectionHeading title="Избранные проекты и кейсы" subtitle="Демо-набор проектов с краткой пользой и тегами." />
+        <div className="grid gap-4 md:grid-cols-3">
+          {projects.slice(0, 3).map((p) => (
+            <ProjectCard key={p.slug} title={p.title} description={p.challenge} slug={p.slug} tags={p.tags} />
+          ))}
+        </div>
       </section>
 
       <section>
-        <SectionHeading title="Новости / события" />
-        <div className="grid gap-4 md:grid-cols-3">{newsItems.map((n) => <NewsCard key={n.slug} title={n.title} excerpt={n.excerpt} slug={n.slug} date={n.date} />)}</div>
+        <SectionHeading title="Образовательные треки" />
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {homeData.educationTracks.map((item) => (
+            <ProgramCard key={item.title} title={item.title} description={item.description} />
+          ))}
+        </div>
       </section>
 
-      <CTASection title="Готовы обсудить инициативу?" description="Оставьте запрос, и команда института предложит сценарий взаимодействия: образовательный, исследовательский или проектный." buttonLabel="Оставить запрос" />
+      <section>
+        <SectionHeading title="Форматы сотрудничества" />
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {homeData.collaborationFormats.map((item) => (
+            <Card key={item} title={item} description="Запуск под задачи партнёра: от идеи и пилота до внедрения и масштабирования." />
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <SectionHeading title="Контакты и быстрый запрос" subtitle="Выберите тип обращения и оставьте заявку." />
+        <div className="grid gap-4 lg:grid-cols-[1.1fr_1fr]">
+          <div className="space-y-4 rounded-ui border border-border-soft bg-surface-card p-5">
+            <Card title="Маршруты обращения" description="Проект, пилот, испытания, образовательная программа или индустриальное партнёрство." />
+            <StatsGrid items={homeData.stats} />
+          </div>
+          <ContactForm title="Обсудить взаимодействие" />
+        </div>
+      </section>
     </div>
   );
 }
