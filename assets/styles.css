@@ -1,0 +1,74 @@
+:root {
+  --primary: #323FA6;
+  --text: #000;
+  --text-soft: #222;
+  --deep: #21108E;
+  --dark: #0E4D99;
+  --light-tag: #7A85DE;
+  --hover: #5D6FFF;
+  --active: #0E4E99;
+  --bg: #FFF;
+  --bg-section: #CDD8FF;
+  --bg-card: #DDE5FF;
+  --bg-soft: #F0F1F2;
+  --border: rgba(14,77,153,.16);
+  --border-soft: rgba(0,0,0,.08);
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(14,77,153,.08);
+  --container: 1240px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text-soft);background:var(--bg);line-height:1.55}
+a{color:var(--primary);text-decoration:none}
+a:hover{color:var(--hover)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--hover);outline-offset:2px}
+.container{max-width:var(--container);margin:auto;padding:0 clamp(16px,3vw,32px)}
+.header{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--border-soft);backdrop-filter:blur(8px);background:rgba(255,255,255,.92)}
+.header-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+.logo{font-weight:700;color:var(--deep)}
+.nav{display:flex;gap:14px;flex-wrap:wrap}
+.button{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:var(--radius);border:1px solid transparent;cursor:pointer;font-weight:500;transition:.16s}
+.button.primary{background:#000;color:#fff}
+.button.secondary{background:var(--primary);color:#fff}
+.button.ghost{background:var(--bg-soft);color:var(--text)}
+.button:hover{transform:translateY(-1px)}
+.main{padding:56px 0 88px}
+.hero{position:relative;overflow:hidden;padding:34px;border-radius:var(--radius);background:linear-gradient(140deg,var(--primary),var(--deep));color:#fff;box-shadow:var(--shadow)}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at right top,rgba(255,255,255,.32),transparent 40%)}
+.hero>*{position:relative}
+h1{font-size:clamp(30px,4.4vw,56px);line-height:1.1;margin:0 0 14px;color:var(--text)}
+.hero h1{color:#fff}
+h2{font-size:clamp(24px,3vw,36px);line-height:1.2;margin:0 0 12px;color:var(--text)}
+h3{margin:0 0 8px;color:var(--text);font-size:20px}
+.section{margin-top:56px}
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.card.soft{background:var(--bg-card)}
+.tag{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(122,133,222,.22);color:var(--deep);font-size:12px;margin:4px 8px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:none;padding:8px 12px;border-radius:999px;background:var(--bg-soft);cursor:pointer}
+.chip.active{background:var(--primary);color:#fff}
+.timeline{counter-reset:item}
+.timeline .card:before{counter-increment:item;content:"Этап " counter(item);display:block;color:var(--dark);font-weight:600;font-size:12px;margin-bottom:8px}
+.footer{border-top:1px solid var(--border-soft);background:rgba(221,229,255,.35);padding:40px 0;margin-top:40px}
+.footer p,.footer li{font-size:14px}
+.breadcrumbs{font-size:14px;margin-bottom:18px}
+.breadcrumbs span{color:#666;margin:0 6px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+input,textarea,select{width:100%;padding:10px;border:1px solid var(--border-soft);border-radius:10px;font:inherit}
+textarea{min-height:100px}
+.notice{font-size:14px;color:var(--dark)}
+.org-group summary{cursor:pointer;font-weight:600;padding:8px 0}
+.map-placeholder{height:220px;border-radius:var(--radius);border:1px dashed var(--border);display:grid;place-items:center;background:var(--bg-soft)}
+@media (max-width: 1279px){.grid-5{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width: 1023px){.grid-4,.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width: 767px){
+  .nav{display:none}
+  .main{padding-top:30px}
+  .hero{padding:24px}
+  .grid-2,.grid-3,.grid-4,.grid-5,.form-grid{grid-template-columns:1fr}
+}
