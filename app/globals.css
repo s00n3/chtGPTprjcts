@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #323fa6;
+  --color-primary-hover: #5d6fff;
+  --color-primary-active: #0e4e99;
+  --color-deep: #21108e;
+  --color-dark: #0e4d99;
+  --color-light-tag: #7a85de;
+  --text-base: #000000;
+  --text-body: #222222;
+  --bg-base: #ffffff;
+  --bg-section: #cdd8ff;
+  --bg-card: #dde5ff;
+  --radius-ui: 14px;
+  --shadow-soft: 0 8px 24px rgba(14, 77, 153, 0.08);
+  --container-width: 1240px;
+  --transition-fast: 160ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text-body);
+  background: var(--bg-base);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary-hover);
+  outline-offset: 2px;
+}
+
+.container-ui {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 3vw, 32px);
+}
+
+.section-space {
+  padding-block: clamp(56px, 9vw, 96px);
+}
